@@ -26,7 +26,11 @@ def shorten_link(token, url):
         'long_url': url
     }
 
-    response = requests.post(bitly_shorting_url, headers=headers, json=payload)
+    response = requests.post(
+        bitly_shorting_url,
+        headers=headers,
+        json=payload,
+        )
     response.raise_for_status()
     bitlink = response.json()['link']
     return bitlink
