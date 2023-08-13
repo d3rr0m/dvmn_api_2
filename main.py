@@ -42,9 +42,9 @@ def clicks_count(token, url):
     }
     parsed_url = urlparse(url)
     bitlink = f'{parsed_url.netloc}{parsed_url.path}'
-    bitly_counting_url = f'''https://api-ssl.bitly.com\
-        /v4/bitlinks/{bitlink}/clicks/summary'''.replace(' ', '')
-
+    bitly_counting_url =\
+        f'''https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary'''
+    print(bitly_counting_url)
     response = requests.get(bitly_counting_url, headers=headers)
     response.raise_for_status()
     clicks = response.json()['total_clicks']
@@ -52,7 +52,7 @@ def clicks_count(token, url):
 
 
 def main():
-    url = 'https://bit.ly/3s4R0At'
+    url = input('Введите ссылку: ').replace(' ', '')
     token = dotenv_values('.env')['BITLY_ACCESS_TOKEN']
 
     if is_bitlink(token, url):
